@@ -1,0 +1,27 @@
+import { css } from "hono/css";
+import type { FC } from "hono/jsx";
+
+type HeaderProps = Record<string, unknown>;
+
+export const Header: FC<HeaderProps> = () => {
+  return (
+    <div
+      class={css`
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-y-md) var(--space-x-md);
+      `}
+    >
+      <h1
+        class={css`
+          font-size: 1rem;
+          font-weight: bold;
+        `}
+      >
+        note.sushidesu
+      </h1>
+      <div>links</div>
+    </div>
+  );
+};
