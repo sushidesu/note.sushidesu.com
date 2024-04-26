@@ -3,24 +3,32 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:proxy": "cf-bindings-proxy",
     "build": "vite build --mode client && vite build",
     "preview": "wrangler pages dev ./dist",
     "deploy": "$npm_execpath run build && wrangler pages deploy ./dist",
     "check": "biome check app",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "migrate:generate": "drizzle-kit generate:sqlite",
+    "migrate:apply": "wrangler d1 migrations apply local --local"
   },
   "private": true,
   "dependencies": {
+    "@hono/zod-validator": "^0.2.1",
     "drizzle-orm": "^0.30.9",
     "hono": "^4.2.5",
-    "honox": "^0.1.15"
+    "honox": "^0.1.15",
+    "zod": "^3.23.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.0",
     "@cloudflare/workers-types": "^4.20240403.0",
     "@hono/vite-cloudflare-pages": "^0.2.4",
     "@hono/vite-dev-server": "^0.11.0",
+    "@paralleldrive/cuid2": "2.2.2",
+    "cf-bindings-proxy": "0.7.1",
     "drizzle-kit": "^0.20.17",
+    "nanoid": "5.0.7",
     "typescript": "5.4.5",
     "vite": "^5.0.12",
     "wrangler": "^3.47.0"

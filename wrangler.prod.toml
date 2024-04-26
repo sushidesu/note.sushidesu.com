@@ -1,0 +1,6 @@
+[[d1_databases]]
+binding = "DB"
+database_name = "prod"
+database_id = "878221ad-1628-4e71-822d-43a2695ee3c4"
+migrations_dir = "./migration"
+
