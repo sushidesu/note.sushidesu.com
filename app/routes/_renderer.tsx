@@ -1,8 +1,8 @@
 import { Style, css } from "hono/css";
 import { jsxRenderer } from "hono/jsx-renderer";
 import { Script } from "honox/server";
-import { Layout } from "../ui/layout";
 import { Header } from "../ui/header";
+import { Layout } from "../ui/layout";
 
 export default jsxRenderer(({ children, title }) => {
   return (

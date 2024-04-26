@@ -13,14 +13,16 @@ export const Header: FC<HeaderProps> = () => {
         padding: var(--space-y-md) var(--space-x-md);
       `}
     >
-      <h1
-        class={css`
+      <a href={"/"}>
+        <h1
+          class={css`
           font-size: 1rem;
           font-weight: bold;
         `}
-      >
-        note.sushidesu
-      </h1>
+        >
+          note.sushidesu
+        </h1>
+      </a>
       <div>links</div>
     </div>
   );

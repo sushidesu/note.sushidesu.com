@@ -1,13 +1,15 @@
 import { css } from "hono/css";
 import { createRoute } from "honox/factory";
+import { database } from "../db/client";
+import { post } from "../db/schema";
 
 type Post = {
   title: string;
   slug: string;
 };
 
-export default createRoute((c) => {
-  const posts = getPosts();
+export default createRoute(async (c) => {
+  const posts = await getPosts();
   return c.render(
     <div
       class={css`
@@ -40,19 +42,12 @@ export default createRoute((c) => {
   );
 });
 
-const getPosts = (): Post[] => {
-  return [
-    {
-      title: "HonoXで小さいブログを作った",
-      slug: "hono-x-blog",
-    },
-    {
-      title: "ラップしたくない",
-      slug: "i-do-not-want-to-wrap",
-    },
-    {
-      title: "それは関数型プログラミングではありません",
-      slug: "it-is-not-functional-programming",
-    },
-  ];
+const getPosts = async (): Promise<Post[]> => {
+  const db = database();
+  const posts = await db.select().from(post);
+
+  return posts.map((p) => ({
+    title: p.title,
+    slug: p.slug,
+  }));
 };

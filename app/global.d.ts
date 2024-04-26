@@ -7,7 +7,9 @@ type Head = {
 declare module "hono" {
   interface Env {
     Variables: Record<string, unknown>;
-    Bindings: Record<string, unknown>;
+    Bindings: {
+      DB: D1Database;
+    };
   }
   interface ContextRenderer {
     // biome-ignore lint: use interface to override
