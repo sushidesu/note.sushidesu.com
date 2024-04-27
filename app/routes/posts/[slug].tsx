@@ -81,7 +81,7 @@ export default createRoute(async (c) => {
   if (!slug) {
     return c.notFound();
   }
-  const db = database();
+  const db = database(c.env);
   const [p] = await db
     .select()
     .from(schema.post)
@@ -141,7 +141,7 @@ export const POST = createRoute(
     const { slug: currentSlug } = c.req.param();
     const { title, slug, body, isPublished } = c.req.valid("form");
 
-    const db = database();
+    const db = database(c.env);
     // await db.transaction(async (tx) => {
     const [p] = await db
       .select()

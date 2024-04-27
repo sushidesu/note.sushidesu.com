@@ -1,3 +1,4 @@
+import type { Env } from "hono";
 import { css } from "hono/css";
 import { createRoute } from "honox/factory";
 import { database } from "../db/client";
@@ -9,7 +10,7 @@ type Post = {
 };
 
 export default createRoute(async (c) => {
-  const posts = await getPosts();
+  const posts = await getPosts(c.env);
   return c.render(
     <div
       class={css`
@@ -42,8 +43,8 @@ export default createRoute(async (c) => {
   );
 });
 
-const getPosts = async (): Promise<Post[]> => {
-  const db = database();
+const getPosts = async (env: Env["Bindings"]): Promise<Post[]> => {
+  const db = database(env);
   const posts = await db.select().from(post);
 
   return posts.map((p) => ({
