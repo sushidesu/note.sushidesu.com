@@ -87,7 +87,17 @@ export default createRoute(async (c) => {
     .from(schema.post)
     .where(eq(schema.post.slug, slug));
   if (!p) {
-    return c.notFound();
+    return c.render(
+      <Page
+        post={{
+          title: "",
+          slug,
+          body: "",
+          createdAt: new Date(),
+          isPublished: false,
+        }}
+      />,
+    );
   }
 
   return c.render(
