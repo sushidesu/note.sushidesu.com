@@ -3,6 +3,7 @@ import { css } from "hono/css";
 import { createRoute } from "honox/factory";
 import { database } from "../db/client";
 import { post } from "../db/schema";
+import { isNotNull } from "drizzle-orm";
 
 type Post = {
   title: string;
@@ -45,7 +46,7 @@ export default createRoute(async (c) => {
 
 const getPosts = async (env: Env["Bindings"]): Promise<Post[]> => {
   const db = database(env);
-  const posts = await db.select().from(post);
+  const posts = await db.select().from(post).where(isNotNull(post.publishedAt));
 
   return posts.map((p) => ({
     title: p.title,
