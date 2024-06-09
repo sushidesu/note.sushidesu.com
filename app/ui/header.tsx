@@ -5,7 +5,7 @@ type HeaderProps = Record<string, unknown>;
 
 export const Header: FC<HeaderProps> = () => {
   return (
-    <div
+    <div:w
       class={css`
         display: flex;
         justify-content: space-between;
@@ -20,10 +20,10 @@ export const Header: FC<HeaderProps> = () => {
           font-weight: bold;
         `}
         >
-          note.sushidesu
+          text.sushidesu.com
         </h1>
       </a>
       <div>links</div>
-    </div>
+    </div:w>
   );
 };

@@ -111,7 +111,7 @@ export default createRoute(async (c) => {
       }}
     />,
     {
-      title: `${p.title} | note.sushidesu.com`,
+      title: `${p.title} | text.sushidesu.com`,
     },
   );
 });
@@ -141,7 +141,7 @@ export const POST = createRoute(
             error={result.error.flatten().fieldErrors}
           />,
           {
-            title: "New Post | note.sushidesu.com",
+            title: "New Post | text.sushidesu.com",
           },
         );
       }
