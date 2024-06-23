@@ -1,7 +1,7 @@
+import { css } from "hono/css";
 import { createRoute } from "honox/factory";
 import { database } from "../../../db/client";
 import { post } from "../../../db/schema";
-import { css } from "hono/css";
 
 export default createRoute(async (c) => {
   const db = database(c.env);

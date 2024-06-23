@@ -1,8 +1,6 @@
 import { Style, css } from "hono/css";
 import { jsxRenderer } from "hono/jsx-renderer";
 import { Script } from "honox/server";
-import { Header } from "../ui/header";
-import { Layout } from "../ui/layout";
 
 export default jsxRenderer(({ children, title }) => {
   return (
@@ -17,7 +15,7 @@ export default jsxRenderer(({ children, title }) => {
             --space-x-sm: 0.5rem;
             --space-x-md: 1rem;
             --space-x-lg: 2rem;
-            --space-y-sm: 0.5rem;
+            --space-y-sm: 0.25rem;
             --space-y-md: 1rem;
             --space-y-lg: 2rem;
             --color-text-link: #0070f3;
@@ -29,11 +27,17 @@ export default jsxRenderer(({ children, title }) => {
           }
           body {
             font-family: sans-serif;
+            font-size: 16px;
           }
         `}</Style>
       </head>
-      <body>
-        <Layout header={<Header />}>{children}</Layout>
+      <body
+        class={css`
+          max-width: 42rem;
+          margin: 0 auto;
+        `}
+      >
+        {children}
       </body>
     </html>
   );

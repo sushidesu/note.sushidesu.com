@@ -4,6 +4,8 @@ import type { FC } from "hono/jsx";
 import { createRoute } from "honox/factory";
 import { database } from "../../db/client";
 import * as schema from "../../db/schema";
+import { Header } from "../../ui/header";
+import { Layout } from "../../ui/layout";
 
 const Page: FC<{
   post: {
@@ -15,21 +17,39 @@ const Page: FC<{
   };
 }> = ({ post }) => {
   return (
-    <div
-      class={css`
+    <Layout header={<Header />}>
+      <div
+        class={css`
       padding: var(--space-y-md) var(--space-x-md);
     `}
-    >
-      <h1>{post.title}</h1>
-      <p>{post.createdAt.toLocaleDateString()}</p>
-      <p
-        class={css`
+      >
+        <h1
+          class={css`
+          font-size: 1.2rem;
+          font-weight: bold;
+        `}
+        >
+          {post.title}
+        </h1>
+        <p
+          class={css`
+          margin-top: var(--space-y-sm);
+        `}
+        >
+          <time datetime={post.createdAt.toISOString()}>
+            {new Intl.DateTimeFormat("ja-JP").format(post.createdAt)}
+          </time>
+        </p>
+        <p
+          class={css`
+          margin-top: var(--space-y-lg);
           white-space: pre-wrap;
         `}
-      >
-        {post.body}
-      </p>
-    </div>
+        >
+          {post.body}
+        </p>
+      </div>
+    </Layout>
   );
 };
 
