@@ -1,7 +1,7 @@
+import { eq } from "drizzle-orm";
 import { createRoute } from "honox/factory";
 import { database } from "../../../../db/client";
 import { post } from "../../../../db/schema";
-import { eq } from "drizzle-orm";
 
 export const POST = createRoute(async (c) => {
   const slug = c.req.param("slug");
